@@ -1,0 +1,5 @@
+if (typeof Sizzle == 'undefined') {
+  <%= File.read(File.expand_path('vendor/sizzle.min.js')) %>
+}
+
+<%= File.read(File.expand_path('lib/watizzle/sizzle/regexp.pseudo.js')) %>
