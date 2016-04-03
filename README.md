@@ -2,6 +2,8 @@
 
 [Sizzle](http://sizzlejs.com)-based locator engine for [watir-webdriver](https://github.com/watir/watir-webdriver).
 
+Not release yet!
+
 ## Installation
 
 Add this line to your application's Gemfile:
