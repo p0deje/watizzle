@@ -1,4 +1,4 @@
-describe Watizzle::Element::Locator do
+describe Watizzle::Locators::Element::Locator do
   include LocatorSpecHelper
 
   describe "finds a single element" do

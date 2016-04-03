@@ -3,16 +3,16 @@ require 'watir-webdriver'
 require 'watizzle/locators/element/locator'
 require 'watizzle/locators/element/selector_builder'
 require 'watizzle/locators/element/selector_builder/sizzle'
+require 'watizzle/locators/element/validator'
 require 'watizzle/version'
 
-# monkey patch watir-webdriver locators
-begin
-  # silence constant defined warnings
-  old_verbose, $VERBOSE = $VERBOSE, nil
+Watir.locator_namespace = Watizzle::Locators
 
-  Watir::Element::Locator         = Watizzle::Element::Locator
-  Watir::Element::SelectorBuilder = Watizzle::Element::SelectorBuilder
-  Watizzle::Element::Validator    = Watir::Element::Validator
-ensure
-  $VERBOSE = old_verbose
-end
+# Some locators cannot be easily re-implemented using Watzzle, 
+# so we just fallback to default Watir locators
+
+Watizzle::Locators::Button    = Watir::Locators::Button
+Watizzle::Locators::Cell      = Watir::Locators::Cell
+Watizzle::Locators::Row       = Watir::Locators::Row
+Watizzle::Locators::TextArea  = Watir::Locators::TextArea
+Watizzle::Locators::TextField = Watir::Locators::TextField

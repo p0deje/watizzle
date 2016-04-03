@@ -14,9 +14,9 @@ module LocatorSpecHelper
 
   def locator(selector, attrs)
     attrs ||= Watir::HTMLElement.attributes
-    element_validator = Watizzle::Element::Validator.new
-    selector_builder = Watizzle::Element::SelectorBuilder.new(driver, selector, attrs)
-    Watizzle::Element::Locator.new(browser, selector, selector_builder, element_validator)
+    element_validator = Watizzle::Locators::Element::Validator.new
+    selector_builder = Watizzle::Locators::Element::SelectorBuilder.new(driver, selector, attrs)
+    Watizzle::Locators::Element::Locator.new(browser, selector, selector_builder, element_validator)
   end
 
   def expect_one(selector)

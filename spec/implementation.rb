@@ -5,12 +5,7 @@ WatirSpec.implementation do |watirspec|
   watirspec.browser_class = Watir::Browser
   watirspec.browser_args = [:firefox, {}]
   watirspec.guard_proc = lambda do |args|
-    args.any? do |arg|
-      [
-        :webdriver,
-        :firefox,
-        %i[webdriver firefox]
-      ].include?(arg)
-    end
+    args.include?(:firefox)
+    # args.any? { |arg| arg == :firefox }
   end
 end
