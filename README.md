@@ -1,8 +1,6 @@
 # Watizzle
 
-[Sizzle](http://sizzlejs.com)-based locator engine for [watir-webdriver](https://github.com/watir/watir-webdriver).
-
-Not release yet!
+[Sizzle](http://sizzlejs.com)-based locator engine for [Watir](https://github.com/watir/watir).
 
 ## Installation
 
@@ -26,16 +24,16 @@ $ gem install watizzle
 
 ## Usage
 
-Require after watir-webdriver, the rest should just work.
+Require after Watir, the rest should just work.
 
 ```ruby
-require 'watir-webdriver'
+require 'watir'
 require 'watizzle'
 ```
 
-## Comparison with default watir-webdriver locator
+## Comparison with default Watir locators
 
-In most cases watizzle works slightly slower than default watir-webdriver locator,
+In most cases watizzle works slightly slower than default Watir locator,
 mainly because it doesn't use selenium-webdriver optimized `find_element` and
 relies on `#execute_script`. However, the performance improves a lot when working
 with regular expression selectors.
@@ -46,13 +44,13 @@ Let's say you want to find all the links from Google results page that include `
 browser.as(text: /watir/).to_a
 ```
 
-The following line executes for more than 1 second with default watir-webdriver.
+The following line executes for more than 1 second with default Watir.
 With watizzle, it's executed for less than 0.1 second, which is 10x faster!
 
 ## Limitations
 
-Some watir-webdriver locators cannot be reimplemented with watizzle. In such cases,
-it fall backs to watir-webdriver, so you should be able to migrate pretty easily.
+Some watir locators cannot be reimplemented with watizzle. In such cases,
+it falls back to watir, so you should be able to migrate pretty easily.
 The only issue that may occur is the usage of complicated regular expressions.
 For now, watizzle simply uses your Ruby regexp in JavaScript, ignoring the cases
 when it's incompatible. If you see any issue with regexp selectors, make sure
@@ -67,17 +65,10 @@ push git commits and tags, and push the `.gem` file to [rubygems.org](https://ru
 
 ## Specs
 
-Watizzle uses [watirspec](https://github.com/watir/watirspec) for testing, so
-you should first fetch it:
+Run all specs:
 
 ```bash
-$ git submodule init && git submodule update
-```
-
-Now, you can run all specs:
-
-```bash
-$ bundle exec rake spec
+$ bundle exec rake
 ```
 
 ## Contributing

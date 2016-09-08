@@ -20,11 +20,11 @@ module LocatorSpecHelper
   end
 
   def expect_one(selector)
-    expect(driver).to receive(:execute_script).with(%{return Sizzle('#{selector}')[0]}).and_return(element)
+    expect(driver).to receive(:execute_script).with(a_string_ending_with("return Sizzle('#{selector}')[0]\n")).and_return(element)
   end
 
   def expect_all(selector)
-    expect(driver).to receive(:execute_script).with(%{return Sizzle('#{selector}')}).and_return(elements)
+    expect(driver).to receive(:execute_script).with(a_string_ending_with("return Sizzle('#{selector}')\n")).and_return(elements)
   end
 
   def locate_one(selector, attrs = nil)

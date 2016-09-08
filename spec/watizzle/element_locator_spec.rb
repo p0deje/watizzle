@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe Watizzle::Locators::Element::Locator do
   include LocatorSpecHelper
 

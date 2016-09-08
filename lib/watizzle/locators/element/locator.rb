@@ -6,11 +6,6 @@ module Watizzle
       class Locator < Watir::Locators::Element::Locator
         SIZZLE_LOADER_PATH = File.expand_path('../../../sizzle/loader.js.erb', __FILE__)
 
-        def initialize(*)
-          super
-          inject_sizzle
-        end
-
         def locate
           e = by_id and return e # short-circuit if :id is given
           element = find_first_by_multiple
@@ -67,31 +62,33 @@ module Watizzle
           end
         end
 
-        def inject_sizzle
-          loader = ERB.new(File.read(SIZZLE_LOADER_PATH))
-          execute_script(loader.result)
-        end
-
         def retrieve_element(locator)
           retrieve_elements("#{locator}[0]")
         end
 
         def retrieve_elements(locator)
           args = [locator]
-          args << @parent.wd if locate_inside_parent?
+          args << @query_scope.wd if locate_inside_parent?
+
           execute_script(*args)
         end
 
-        def execute_script(*args)
-          browser = case @parent
+        def execute_script(locator, parent = nil)
+          browser = case @query_scope
                     when Watir::IFrame
                       # TODO: we should not do that
-                      @parent.tap(&:switch_to!)
+                      @query_scope.tap(&:switch_to!)
                     when Watir::Element
-                      @parent.browser
+                      @query_scope.browser
                     else
-                      @parent
+                      @query_scope
                     end
+
+          load_and_locate_script = ERB.new(File.read(SIZZLE_LOADER_PATH)).result(binding)
+
+          args = [load_and_locate_script]
+          args << parent if parent
+
           browser.driver.execute_script(*args)
         end
 
@@ -102,7 +99,7 @@ module Watizzle
         end
 
         def locate_inside_parent?
-          @parent.is_a?(Watir::Element) && !@parent.is_a?(Watir::IFrame)
+          @query_scope.is_a?(Watir::Element) && !@query_scope.is_a?(Watir::IFrame)
         end
       end
     end

@@ -9,8 +9,9 @@ module Watizzle
         private
 
         def given_xpath_or_css(selector)
-          # index should not be present for given_xpath_or_css
+          # index/visible should not be present for given_xpath_or_css
           selector.delete(:index)
+          selector.delete(:visible)
           super
         end
 

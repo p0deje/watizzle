@@ -42,7 +42,12 @@ module Watizzle
               end
             end
 
+            if selectors.key?(:visible)
+              sizzle << (selectors.delete(:visible) ? ':visible' : ':hidden')
+            end
+
             index = selectors.delete(:index)
+
             selectors.each do |key, value|
               key = key.to_s.tr("_", "-")
 

@@ -16,12 +16,11 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^spec/}) }
   spec.require_paths = ['lib']
 
-  # spec.add_dependency 'watir-webdriver', '~> 0.10'
+  spec.add_dependency 'watir', '>= 6.0.3'
 
   spec.add_development_dependency 'activesupport'
   spec.add_development_dependency 'bundler', '~> 1.10'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'sinatra' # watirspec
 end
