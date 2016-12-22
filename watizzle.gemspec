@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Alex Rodionov']
   spec.email         = ['p0deje@gmail.com']
 
-  spec.summary       = 'fo-watir-my-sizzle'
+  spec.summary       = 'for watir my sizzle'
   spec.description   = 'Sizzle.js locator engine for Watir'
   spec.homepage      = 'https://github.com/p0deje/watizzle'
   spec.license       = 'MIT'
