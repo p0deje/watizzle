@@ -1,4 +1,4 @@
-# Watizzle
+# Watizzle [![Build Status](https://travis-ci.org/p0deje/watizzle.svg?branch=master)](https://travis-ci.org/p0deje/watizzle) [![Gem Version](https://badge.fury.io/rb/watizzle.svg)](http://badge.fury.io/rb/watizzle)
 
 [Sizzle](http://sizzlejs.com)-based locator engine for [Watir](https://github.com/watir/watir).
 
