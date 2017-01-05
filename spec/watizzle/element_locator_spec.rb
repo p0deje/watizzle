@@ -219,9 +219,9 @@ describe Watizzle::Locators::Element::Locator do
     end
 
     describe "errors" do
-      it "raises a TypeError if :index is not a Fixnum" do
+      it "raises a TypeError if :index is not a Integer" do
         expect { locate_one(tag_name: "div", index: "bar") }.to \
-          raise_error(TypeError, %[expected Fixnum, got "bar":String])
+          raise_error(TypeError, %[expected Integer, got "bar":String])
       end
 
       it "raises a TypeError if selector value is not a String or Regexp" do
